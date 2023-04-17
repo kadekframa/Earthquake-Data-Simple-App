@@ -30,6 +30,7 @@ function App() {
   const [page2, setPage2] = useState("");
 
   useEffect(() => {
+    /* Request to server Endpoint. */
     const request = new Request(
       "http://localhost:8080/https://data.bmkg.go.id/DataMKG/TEWS/gempadirasakan.json",
       {
@@ -37,10 +38,12 @@ function App() {
       }
     );
 
+    /* Get response promise */
     const response = fetch(request);
 
     response
       .then((response) => {
+        /* Convert promise to json. */
         return response.json();
       })
       .then((responseJson) => {
@@ -52,19 +55,15 @@ function App() {
       .finally(() => console.info("Tetap Semangat!"));
   }, [setDataGempa]);
 
-  console.info(dataGempa);
-  console.info("detail: ", dataDetail);
+  console.info("data list : ", dataGempa);
+  console.info("data detail: ", dataDetail);
 
   const handleDetail = () => {
     setShowDetail(!showDetail);
-
-    console.info("click!");
   };
 
   const handleMenu = () => {
     setShowMenu(!showMenu);
-
-    console.info("click!");
   };
 
   const previousPage = () => {
@@ -77,6 +76,10 @@ function App() {
     setLimitAwal(limitAwal + 10);
     setPage1("");
     setPage2("text-white bg-[#643DFF]");
+  };
+
+  const totalData = () => {
+    return dataGempa.length;
   };
 
   return (
@@ -833,7 +836,7 @@ function App() {
                     </svg>
                     Total Data
                   </p>
-                  <p className="text-xl font-semibold mt-2">15</p>
+                  <p className="text-xl font-semibold mt-2">{totalData()}</p>
                 </div>
 
                 <div className="flex flex-col justify-center p-4 bg-white rounded-lg text-black border md:w-full shadow-md shadow-gray-200">
