@@ -82,6 +82,32 @@ function App() {
     return dataGempa.length;
   };
 
+  const magnitudoTertinggi = () => {
+    /* Get all magnitudo from data gempa. */
+    const getAllMagnitudeValue = () => {
+      let magnitudo = [];
+      dataGempa.map((response) => {
+        magnitudo.push(response.Magnitude);
+      });
+
+      return magnitudo;
+    };
+
+    /* Set variable arrayMagnitudos contain array of all data magnitudo. */
+    const arrayMagnitudos = getAllMagnitudeValue();
+
+    let highestMagnitude = 0;
+
+    /* Looping array that contain magnitudo data. Then value will compare each other to get the highest magnitudo. */
+    arrayMagnitudos.forEach((value) => {
+      if (value > highestMagnitude) {
+        highestMagnitude = value;
+      }
+    });
+
+    return highestMagnitude;
+  };
+
   return (
     <Fragment>
       {/* header */}
@@ -857,7 +883,9 @@ function App() {
                     </svg>
                     Tertinggi
                   </p>
-                  <p className="text-xl font-semibold mt-2">2.4 Mag</p>
+                  <p className="text-xl font-semibold mt-2">
+                    {magnitudoTertinggi()} Mag
+                  </p>
                 </div>
 
                 <div className="flex flex-col justify-center p-4 bg-white rounded-lg text-black border md:w-full shadow-md shadow-gray-200">
