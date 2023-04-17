@@ -11,7 +11,7 @@ function App() {
 
   const [showDetail, setShowDetail] = useState(false);
   const [dataDetail, setDataDetail] = useState({
-    tanggal: "28 Maret 2023",
+    tanggal: "",
     jam: "03:44 WIB",
     datetime: "2023-03-27T17 : 03:44+00:00",
     coordinates: "3.24, 97.92",
@@ -1006,20 +1006,22 @@ function App() {
                                 {index + 1}
                               </td>
                               <td className="px-6 py-2 font-medium">
-                                {result.title}
+                                {result.Tanggal}
                               </td>
                               <td className="px-6 py-2 font-medium">
-                                {result.title}
+                                {result.Jam}
                               </td>
                               <td className="px-6 py-2 font-medium">
-                                {result.id}
+                                {result.Coordinates}
                               </td>
                               <td className="px-6 py-2 font-medium">
-                                test Magnitude
+                                {result.Magnitude}
                               </td>
-                              <td className="px-6 py-2 font-medium">10 Km</td>
                               <td className="px-6 py-2 font-medium">
-                                Indonesia
+                                {result.Kedalaman}
+                              </td>
+                              <td className="px-6 py-2 font-medium">
+                                {result.Wilayah}
                               </td>
                             </tr>
                           );
@@ -1119,50 +1121,43 @@ function App() {
                 <div className="w-full">
                   <div className="text-sm md:text-sm font-medium">
                     <p className="text-[#858D9D] mb-1">Tanggal</p>
-                    <p className="text-[#333843]">28 Maret 2023</p>
+                    <p>{dataDetail.tanggal}</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Jam</p>
-                    <p className="text-[#333843]">03:44 WIB</p>
+                    <p>{dataDetail.jam}</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Date Time</p>
-                    <p className="text-[#333843]">
-                      2023-03-27T17 : 03:44+00:00
-                    </p>
+                    <p>{dataDetail.datetime}</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Koordinat</p>
-                    <p className="text-[#333843]">3.24, 97.92</p>
+                    <p>{dataDetail.coordinates}</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Lintang</p>
-                    <p className="text-[#333843]">3.24 LU</p>
+                    <p>{dataDetail.lintang} LU</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Bujur</p>
-                    <p className="text-[#333843]">97.92 BT</p>
+                    <p>{dataDetail.bujur} BT</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Magnitudo</p>
-                    <p className="text-[#333843]">2.4</p>
+                    <p>{dataDetail.magnitude} Mag</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Kedalaman</p>
-                    <p className="text-[#333843]">4 Km</p>
+                    <p>{dataDetail.kedalaman} Km</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4 border7">
                     <p className="text-[#858D9D] mb-1">Wilayah</p>
-                    <p className="text-[#333843]">
-                      Pusat Gempa berasa di darat 29 km Tengga Kutacane - Kab.
-                      Aceh Selatan
-                    </p>
+                    <p>{dataDetail.wilayah}</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Dirasakan</p>
-                    <p className="text-[#333843]">
-                      II Pasie Raja, Kab. Aceh Selatan
-                    </p>
+                    <p>{dataDetail.dirasakan}</p>
                   </div>
                 </div>
               </div>
@@ -1202,46 +1197,43 @@ function App() {
                 <div className="w-full">
                   <div className="text-sm md:text-sm font-medium">
                     <p className="text-[#858D9D] mb-1">Tanggal</p>
-                    <p>28 Maret 2023</p>
+                    <p>{dataDetail.tanggal}</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Jam</p>
-                    <p>03:44 WIB</p>
+                    <p>{dataDetail.jam}</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Date Time</p>
-                    <p>2023-03-27T17 : 03:44+00:00</p>
+                    <p>{dataDetail.datetime}</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Koordinat</p>
-                    <p>3.24, 97.92</p>
+                    <p>{dataDetail.coordinates}</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Lintang</p>
-                    <p>3.24 LU</p>
+                    <p>{dataDetail.lintang} LU</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Bujur</p>
-                    <p>97.92 BT</p>
+                    <p>{dataDetail.bujur} BT</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Magnitudo</p>
-                    <p>2.4</p>
+                    <p>{dataDetail.magnitude} Mag</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Kedalaman</p>
-                    <p>4 Km</p>
+                    <p>{dataDetail.kedalaman} Km</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4 border7">
                     <p className="text-[#858D9D] mb-1">Wilayah</p>
-                    <p>
-                      Pusat Gempa berasa di darat 29 km Tengga Kutacane - Kab.
-                      Aceh Selatan
-                    </p>
+                    <p>{dataDetail.wilayah}</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Dirasakan</p>
-                    <p>II Pasie Raja, Kab. Aceh Selatan</p>
+                    <p>{dataDetail.dirasakan}</p>
                   </div>
                 </div>
               </div>
