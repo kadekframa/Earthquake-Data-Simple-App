@@ -1137,11 +1137,11 @@ function App() {
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Lintang</p>
-                    <p>{dataDetail.lintang} LU</p>
+                    <p>{dataDetail.lintang}</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Bujur</p>
-                    <p>{dataDetail.bujur} BT</p>
+                    <p>{dataDetail.bujur}</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Magnitudo</p>
@@ -1149,7 +1149,7 @@ function App() {
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4">
                     <p className="text-[#858D9D] mb-1">Kedalaman</p>
-                    <p>{dataDetail.kedalaman} Km</p>
+                    <p>{dataDetail.kedalaman}</p>
                   </div>
                   <div className="text-sm md:text-sm font-medium mt-4 border7">
                     <p className="text-[#858D9D] mb-1">Wilayah</p>
