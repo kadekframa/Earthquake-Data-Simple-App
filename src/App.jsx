@@ -1,13 +1,37 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 // import "./App.css";
 
 function App() {
+  // const { state, handleFunction } = useContext(GlobalContext);
+  // const { test, setTesting } = state;
+
+  const [dataGempa, setDataGempa] = useState([]);
+  const [limitAwal, setLimitAwal] = useState(0);
+
   const [showDetail, setShowDetail] = useState(false);
+  const [dataDetail, setDataDetail] = useState({
+    tanggal: "28 Maret 2023",
+    jam: "03:44 WIB",
+    datetime: "2023-03-27T17 : 03:44+00:00",
+    coordinates: "3.24, 97.92",
+    lintang: "3.24 LU",
+    bujur: "97.92 BT",
+    magnitude: "2.4",
+    kedalaman: "4 Km",
+    wilayah:
+      "Pusat Gempa berasa di darat 29 km Tengga Kutacane - Kab. Aceh Selatan",
+    dirasakan: "II Pasie Raja, Kab. Aceh Selatan",
+  });
+
   const [showMenu, setShowMenu] = useState(false);
+
+  const [page1, setPage1] = useState("text-white bg-[#643DFF]");
+  const [page2, setPage2] = useState("");
 
   useEffect(() => {
     const request = new Request(
-      "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2023-04-14&endtime=2023-04-15",
+      "http://localhost:8080/https://data.bmkg.go.id/DataMKG/TEWS/gempadirasakan.json",
       {
         method: "GET",
       }
@@ -20,11 +44,16 @@ function App() {
         return response.json();
       })
       .then((responseJson) => {
-        console.info(responseJson);
+        const data = responseJson.Infogempa.gempa;
+
+        setDataGempa(data);
       })
       .catch((error) => console.info(error))
       .finally(() => console.info("Tetap Semangat!"));
-  }, []);
+  }, [setDataGempa]);
+
+  console.info(dataGempa);
+  console.info("detail: ", dataDetail);
 
   const handleDetail = () => {
     setShowDetail(!showDetail);
@@ -36,6 +65,18 @@ function App() {
     setShowMenu(!showMenu);
 
     console.info("click!");
+  };
+
+  const previousPage = () => {
+    setLimitAwal(limitAwal - 9);
+    setPage1("text-white bg-[#643DFF]");
+    setPage2("");
+  };
+
+  const nextPage = () => {
+    setLimitAwal(limitAwal + 10);
+    setPage1("");
+    setPage2("text-white bg-[#643DFF]");
   };
 
   return (
@@ -869,6 +910,9 @@ function App() {
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <thead className="text-xs uppercase dark:text-gray-400">
                     <tr className="items-center border-b-2 border-gray-100 rounded-lg  text-gray-400">
+                      <th scope="col" class="px-6 py-3">
+                        No
+                      </th>
                       <th scope="col" class="flex px-6 py-3">
                         Tanggal
                         <svg
@@ -932,50 +976,54 @@ function App() {
                     </tr>
                   </thead>
                   <tbody className="">
-                    <tr
-                      onClick={handleDetail}
-                      className="bg-white dark:bg-gray-800 hover:bg-[#F3F0FF] cursor-pointer"
-                    >
-                      <td className="px-6 py-2 font-medium">15 April 2023</td>
-                      <td className="px-6 py-2 font-medium">03:44 WIB</td>
-                      <td className="px-6 py-2 font-medium">3.24, 97.92</td>
-                      <td className="px-6 py-2 font-medium">4.2 Mag</td>
-                      <td className="px-6 py-2 font-medium">10 Km</td>
-                      <td className="px-6 py-2 font-medium">Kab. Aceh</td>
-                    </tr>
-                    <tr
-                      onClick={handleDetail}
-                      className="bg-white dark:bg-gray-800 hover:bg-[#F3F0FF] cursor-pointer"
-                    >
-                      <td className="px-6 py-2 font-medium">15 April 2023</td>
-                      <td className="px-6 py-2 font-medium">03:44 WIB</td>
-                      <td className="px-6 py-2 font-medium">3.24, 97.92</td>
-                      <td className="px-6 py-2 font-medium">4.2 Mag</td>
-                      <td className="px-6 py-2 font-medium">10 Km</td>
-                      <td className="px-6 py-2 font-medium">Kab. Aceh</td>
-                    </tr>
-                    <tr
-                      onClick={handleDetail}
-                      className="bg-white dark:bg-gray-800 hover:bg-[#F3F0FF] cursor-pointer"
-                    >
-                      <td className="px-6 py-2 font-medium">15 April 2023</td>
-                      <td className="px-6 py-2 font-medium">03:44 WIB</td>
-                      <td className="px-6 py-2 font-medium">3.24, 97.92</td>
-                      <td className="px-6 py-2 font-medium">4.2 Mag</td>
-                      <td className="px-6 py-2 font-medium">10 Km</td>
-                      <td className="px-6 py-2 font-medium">Kab. Aceh</td>
-                    </tr>
-                    <tr
-                      onClick={handleDetail}
-                      className="bg-white dark:bg-gray-800 hover:bg-[#F3F0FF] cursor-pointer"
-                    >
-                      <td className="px-6 py-2 font-medium">15 April 2023</td>
-                      <td className="px-6 py-2 font-medium">03:44 WIB</td>
-                      <td className="px-6 py-2 font-medium">3.24, 97.92</td>
-                      <td className="px-6 py-2 font-medium">4.2 Mag</td>
-                      <td className="px-6 py-2 font-medium">10 Km</td>
-                      <td className="px-6 py-2 font-medium">Kab. Aceh</td>
-                    </tr>
+                    {dataGempa.length != 0 &&
+                      dataGempa
+                        .filter((result, index) => {
+                          return index >= limitAwal && index < limitAwal + 10;
+                        })
+                        .map((result, index) => {
+                          return (
+                            <tr
+                              key={index + 1}
+                              onClick={() => {
+                                setShowDetail(!showDetail);
+                                setDataDetail({
+                                  tanggal: result.Tanggal,
+                                  jam: result.Jam,
+                                  datetime: result.DateTime,
+                                  coordinates: result.Coordinates,
+                                  lintang: result.Lintang,
+                                  bujur: result.Bujur,
+                                  magnitude: result.Magnitude,
+                                  kedalaman: result.Kedalaman,
+                                  wilayah: result.Wilayah,
+                                  dirasakan: result.Dirasakan,
+                                });
+                              }}
+                              className="bg-white dark:bg-gray-800 hover:bg-[#F3F0FF] cursor-pointer !text-black text-sm"
+                            >
+                              <td className="px-6 py-2 font-medium">
+                                {index + 1}
+                              </td>
+                              <td className="px-6 py-2 font-medium">
+                                {result.title}
+                              </td>
+                              <td className="px-6 py-2 font-medium">
+                                {result.title}
+                              </td>
+                              <td className="px-6 py-2 font-medium">
+                                {result.id}
+                              </td>
+                              <td className="px-6 py-2 font-medium">
+                                test Magnitude
+                              </td>
+                              <td className="px-6 py-2 font-medium">10 Km</td>
+                              <td className="px-6 py-2 font-medium">
+                                Indonesia
+                              </td>
+                            </tr>
+                          );
+                        })}
                   </tbody>
                 </table>
               </div>
@@ -990,7 +1038,10 @@ function App() {
                   from 15
                 </p>
                 <div className="flex">
-                  <button className="px-3 py-2 mr-2 bg-[#F0ECFF]">
+                  <button
+                    onClick={previousPage}
+                    className="px-3 py-2 mr-2 bg-[#F0ECFF]"
+                  >
                     <svg
                       width="7"
                       height="12"
@@ -1006,11 +1057,18 @@ function App() {
                       />
                     </svg>
                   </button>
-                  <p className="text-white text-xs rounded-lg px-3 py-2 border mr-1 bg-[#643DFF]">
+                  <p
+                    className={`text-xs rounded-lg px-3 py-2 border mr-1 ${page1}`}
+                  >
                     1
                   </p>
-                  <p className="text-xs rounded-lg px-3 py-2 border">2</p>
-                  <button className="px-3 py-2 ml-2 bg-[#F0ECFF]">
+                  <p className={`text-xs rounded-lg px-3 py-2 border ${page2}`}>
+                    2
+                  </p>
+                  <button
+                    onClick={nextPage}
+                    className="px-3 py-2 ml-2 bg-[#F0ECFF]"
+                  >
                     <svg
                       width="7"
                       height="12"
