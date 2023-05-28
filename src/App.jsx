@@ -11,7 +11,7 @@ function App() {
 
   const [showDetail, setShowDetail] = useState(false);
   const [dataDetail, setDataDetail] = useState({
-    tanggal: "",
+    tanggal: "28 Maret 2023",
     jam: "03:44 WIB",
     datetime: "2023-03-27T17 : 03:44+00:00",
     coordinates: "3.24, 97.92",
@@ -85,12 +85,12 @@ function App() {
   const magnitudoTertinggi = () => {
     /* Get all magnitudo from data gempa. */
     const getAllMagnitudeValue = () => {
-      let magnitudo = [];
+      let magnitudos = [];
       dataGempa.map((response) => {
-        magnitudo.push(response.Magnitude);
+        magnitudos.push(response.Magnitude);
       });
 
-      return magnitudo;
+      return magnitudos;
     };
 
     /* Set variable arrayMagnitudos contain array of all data magnitudo. */
@@ -107,6 +107,32 @@ function App() {
 
     return highestMagnitude;
   };
+
+  const averageKedalaman = () => {
+    /* Get all data kedalaman from data gempa. */
+    const getAllKedalamanValue = () => {
+      let kedalamans = [];
+      dataGempa.map((response) => {
+        kedalamans.push(response.Kedalaman);
+      });
+      return kedalamans;
+    };
+
+    /* arrayKedalamans contain array of all data kedalaman. */
+    const arrayKedalamans = getAllKedalamanValue();
+
+    console.info(arrayKedalamans);
+
+    let sumKedalaman;
+    /* Sum the value of each data in arrayKedalamans. */
+    arrayKedalamans.forEach((value) => {
+      sumKedalaman += value;
+    });
+
+    return sumKedalaman;
+  };
+
+  console.info(averageKedalaman());
 
   return (
     <Fragment>
